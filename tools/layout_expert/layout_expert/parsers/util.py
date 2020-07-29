@@ -35,7 +35,7 @@ import time
 
 import pyparsing
 
-from rekall import utils as rekall_utils
+from rekall_lib import utils as rekall_utils
 from layout_expert.serialization import json_serialization
 
 

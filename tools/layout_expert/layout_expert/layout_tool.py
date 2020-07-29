@@ -29,7 +29,7 @@ import argparse
 import logging
 import sys
 
-from rekall import utils as rekall_utils
+from rekall_lib import utils as rekall_utils
 from layout_expert.lib import layout_manager
 from layout_expert.serialization import json_serialization
 
@@ -49,7 +49,7 @@ def _build_pre_ast_forest(args):
         overwrite=args.overwrite)
 
     pre_ast_forest = pre_ast_builder.generate_pre_ast()
-    with open(args.output, "wb") as fd:
+    with open(args.output, "w", encoding="utf8") as fd:
         json_serialization.dump_file(pre_ast_forest, fd)
 
 
@@ -189,9 +189,11 @@ def main():
     try:
         root_logger = logging.getLogger()
         root_logger.setLevel(logging.INFO)
-        root_logger.handlers[0].setFormatter(
-            logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
-        )
+        #formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
+        #root_logger.addHandler(formatter)
+        c_handler = logging.StreamHandler()
+        c_handler.setLevel(logging.INFO)
+        root_logger.addHandler(c_handler)
 
         _parser_obj = _get_parser()
         _args = _parser_obj.parse_args()

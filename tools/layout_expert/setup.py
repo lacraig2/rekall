@@ -34,7 +34,7 @@ VERSION = ENV["get_versions"]()
 current_directory = os.path.dirname(__file__)
 install_requires = [
     "pyparsing > 2, < 3",
-    "rekall-core >= 1.5, < 1.6",
+    "rekall-core >= 1.7",
     "mock > 1, < 2",
 ]
 

@@ -92,7 +92,7 @@ class PreprocessingLoader(object):
         elif include.quotes_type == '"':
             opened_files_directories = map(os.path.dirname, self.opened_files)
             return itertools.chain(
-                reversed(opened_files_directories),
+                reversed(list(opened_files_directories)),
                 iter(self.include_directories))
 
         else:
@@ -116,7 +116,7 @@ class PreprocessingLoader(object):
         return os.path.isfile(file_path)
 
     def _get_file_content(self, file_path):
-        with open(file_path) as opened_file:
+        with open(file_path,"rb") as opened_file:
             return opened_file.read().decode('utf8')
 
 

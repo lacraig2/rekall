@@ -126,7 +126,7 @@ def anything_beetween(opener_and_closer):
     opener = pyparsing.Literal(opener_and_closer[0])
     closer = pyparsing.Literal(opener_and_closer[1])
     char_removal_mapping = dict.fromkeys(map(ord, opener_and_closer))
-    other_chars = unicode(string.printable).translate(char_removal_mapping)
+    other_chars = string.printable.translate(char_removal_mapping)
     word_without_delimiters = pyparsing.Word(other_chars).setName(
         "other_chars")
     anything = pyparsing.Forward()
